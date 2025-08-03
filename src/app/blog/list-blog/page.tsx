@@ -28,7 +28,7 @@ const ListPage = () => {
         try {
           const res = await fetch('/api/blog/get-all-blog'); // ⬅️ ambil data dari API internal
           const data = await res.json();
-          setBlog(data.data)
+          setBlog(data)
             console.log('Data Blog yang di fetch :', data)
         
           
@@ -41,55 +41,22 @@ const ListPage = () => {
     }, []);
     
 
-    // const deployments = useMemo(() => (
-    //     [
-    //             {
-    //     id: '5hLrXD4fr',
-    //     branch: 'main',
-    //     status: 'Pending',
-    //     env: 'Production',
-    //     timeAgo: '22h ago',
-    //     date: '2025-06-24',
-    //     view: 12,
-    //     comment:{
-    //         qty:12,
-    //         keyComment:'C12lkQ22'
-    //     },
-    //     author: 'Donipratama',
-    // },
-    // {
-    //     id: 'DoSx2BZGq',
-    //     branch: 'main',
-    //     status: 'Ready',
-    //     env: 'Production',
-    //     timeAgo: '1d ago',
-    //     date: '2025-06-23',
-    //     author: 'Martinpasaribu',
-    // },
-    // {
-    //     id: 'FailedXYZ12',
-    //     branch: 'dev',
-    //     status: 'Ready',
-    //     env: 'Staging',
-    //     timeAgo: '2d ago',
-    //     date: '2025-06-22',
-    //     author: 'Martinpasaribu',
-    // },
-    //     ]
-    // ), [])
 
 
-    const filteredDeployments = useMemo(() => {
-        return blog.filter((d) => {
-            return (
-            (filters.category === '' || d.category.includes(filters.category)) &&
-            // (filters.date === '' || d.date === filters.date) &&
-            // (filters.env === 'All Environments' || d.env === filters.env) &&
-            (filters.status === 'Status' || d.status === filters.status)
-            )
-        })
-    }, [blog, filters])
+const filteredDeployments = useMemo(() => {
+  if (!Array.isArray(blog)) return []
 
+  return blog.filter((d) => {
+    const categoryMatch =
+      filters.category === '' ||
+      (typeof d.category === 'string' && d.category.includes(filters.category))
+
+    const statusMatch =
+      filters.status === 'Status' || d.status === filters.status
+
+    return categoryMatch && statusMatch
+  })
+}, [blog, filters]);
 
   return (
     <div>
@@ -159,7 +126,7 @@ const ListPage = () => {
                 <div className="border-[1px] border-gray-300 rounded-md mt-10">
                     {filteredDeployments.map((deploy,index) => (
                         <div
-                            key={deploy.id}
+                            key={index}
                             className="flex justify-between items-center px-4 py-2 hover:bg-gray-50"
                         >
                             <div className=" w-full flex items-center gap-4">
@@ -201,11 +168,11 @@ const ListPage = () => {
                                     )}
                                 </div>
 
-                                <span className='w-full max-w-[10rem]'>by {deploy.author}</span>
+                                <span className='w-full max-w-[10rem]'>by {deploy.author.name}</span>
                             </div>
 
                             <div>
-                                <Link href={`/blog/preview/${deploy.slug}?id=${deploy.id}`}>
+                                <Link href={`/blog/preview/${deploy.slug}?id=${deploy._id}`}>
                                     <EyeClosed size={15} />
                                 </Link>
                             </div>

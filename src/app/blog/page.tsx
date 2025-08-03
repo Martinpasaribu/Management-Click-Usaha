@@ -172,7 +172,7 @@ const handleSubmit = async () => {
                 <div className='w-1/2 space-y-2'>
 
                         <input type="text" placeholder="Judul" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full p-2 border rounded" />
-                        <input type="text" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} className="w-full p-2 border rounded" />
+                        {/* <input type="text" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} className="w-full p-2 border rounded" /> */}
 
                         <div className="w-full">
                           <select
@@ -185,8 +185,8 @@ const handleSubmit = async () => {
                                       dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           >
                             <option value="" className='text-slate-400'>Author</option>
-                            <option value="6868e3e07407d759359ea689">Martin Pasaribu</option>
-                            <option value="68614333275232e0b45b7d35">Ricky Pasaribu</option>
+                            <option value="6884d9c935538e6d8e229a39">Martin Pasaribu</option>
+                            <option value="6884d91c35538e6d8e229a37">Ricky Pasaribu</option>
                           </select>
                         </div>
 

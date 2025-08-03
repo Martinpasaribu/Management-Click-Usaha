@@ -186,11 +186,11 @@ useEffect(() => {
         <div className="flex md:flex-row justify-between">
 
           <div className="mt-6 text-gray-400 text-sm flex items-center gap-4">
-            <span>{blog?.author}</span>
+            <span>{blog?.author.name}</span>
             <span>•</span>
-            <span>{formatDate(blog?.created_at)}</span>
+            <span>{formatDate(blog?.createdAt)}</span>
             <span>•</span>
-            <span>{getTimeFromNow(blog?.created_at)}</span>
+            <span>{getTimeFromNow(blog?.createdAt)}</span>
           </div>
 
           <div className="list-style-none flex items-center justify-center gap-5 text-black ">
