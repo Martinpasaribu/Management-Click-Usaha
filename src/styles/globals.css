@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Luxurious+Script&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flex-center {
+    @apply  flex justify-center items-center
+}
+
+
+/* @font-face {
+  font-family: 'Balham';
+  src: url('/Fonts/Balham-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+
+.card-responsive {
+  min-width: calc(100% / var(--visible-count));
+}
+
+@screen sm {
+  .card-responsive {
+    min-width: calc(99% / var(--visible-count));
+  }
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.prose p {
+  margin-bottom: 1.25em;
+  line-height: 1.75;
+}
+.white-space-pre {
+  white-space: pre-wrap;
+}
